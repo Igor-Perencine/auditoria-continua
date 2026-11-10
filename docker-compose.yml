@@ -1,0 +1,50 @@
+name: auditoria-continua
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    # Sem 'ports': o banco não fica exposto fora da rede interna do Docker.
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      FORWARDED_ALLOW_IPS: "*"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "8443:443"   # HTTPS (certificado autoassinado gerado no 1º start)
+      - "8080:80"    # redireciona para HTTPS
+    depends_on:
+      - backend
+
+  # IA 100% local e gratuita (opcional): docker compose --profile ollama up -d
+  ollama:
+    image: ollama/ollama:0.5.7
+    profiles: ["ollama"]
+    restart: unless-stopped
+    volumes:
+      - ollama:/root/.ollama
+
+volumes:
+  pgdata:
+  ollama:
