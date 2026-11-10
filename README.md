@@ -10,6 +10,34 @@ A IA pode ser o **Gemini (plano gratuito)** ou um modelo **100% local via Ollama
 > **Aviso:** projeto acadêmico/protótipo para ambiente de laboratório. Todos os dados, empresas e políticas
 > de exemplo são fictícios. Não use em produção sem revisão de segurança.
 
+## Telas
+
+**Painel** — status dos 93 controles do Anexo A por tema e achados abertos por severidade
+![Painel](docs/img/painel.png)
+
+**Triagem de achados** — fila priorizada por revisão obrigatória e severidade (impacto × criticidade do ativo)
+![Triagem de achados](docs/img/triagem.png)
+
+**Detalhe do achado** — rastreabilidade *critério → evidência → condição → resultado → decisão humana*
+![Detalhe do achado](docs/img/achado-detalhe.png)
+
+<details>
+<summary>Mais telas: controles, laboratório, métricas e integridade</summary>
+
+**Controles (93)** — classificação do potencial de automação
+![Controles](docs/img/controles.png)
+
+**Laboratório de cenários** — injeção de falhas e tempo de detecção
+![Laboratório](docs/img/laboratorio.png)
+
+**Métricas da pesquisa** — cobertura, tempo de detecção, falsos positivos e Kappa IA × auditor
+![Métricas](docs/img/metricas.png)
+
+**Evidências e integridade** — evidências cifradas e cadeia de hash SHA-256
+![Evidências](docs/img/evidencias.png)
+
+</details>
+
 ---
 
 ## 1. Como rodar
