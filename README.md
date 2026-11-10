@@ -83,10 +83,6 @@ GEMINI_API_KEY=sua-chave
 
 e rode `docker compose up -d backend`. Em **Políticas → Gerar embeddings pendentes** (admin) indexe as políticas.
 
-> ⚠️ No plano gratuito o Google pode usar o conteúdo enviado para melhorar seus produtos. Por isso a plataforma
-> **pseudonimiza** usuários, hosts, IPs e e-mails antes do envio (`AI_PSEUDONYMIZE=true`) e recomenda-se usar
-> apenas dados de laboratório. Vale citar isso no TCC (minimização de dados — LGPD / NIST AI 600-1).
-
 **Ollama (local, nada sai da máquina):** precisa de ~8 GB de RAM livres.
 
 ```powershell
