@@ -18,7 +18,7 @@ Pré-requisito: **Docker Desktop** (gratuito para uso pessoal, educacional e peq
 — https://www.docker.com/products/docker-desktop/ . Alternativa 100% livre: Podman Desktop.
 
 ```powershell
-git clone https://github.com/SEU-USUARIO/auditoria-continua.git
+git clone https://github.com/Igor-Perencine/auditoria-continua.git
 cd auditoria-continua
 powershell -ExecutionPolicy Bypass -File .\setup.ps1   # gera o .env com segredos aleatórios e mostra as senhas
 docker compose up -d --build                            # 1ª vez demora alguns minutos
